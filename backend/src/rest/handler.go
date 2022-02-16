@@ -182,7 +182,7 @@ func (h *Handler) Charge(c *gin.Context) {
 	}
 
 	if request.Remember {
-		err = h.db.SaveCreditCardForCostumer(request.CustomerID, stripeCustomerID)
+		err = h.db.SaveCreditCardForCustomer(request.CustomerID, stripeCustomerID)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 			return

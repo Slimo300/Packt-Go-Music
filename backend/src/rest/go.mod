@@ -2,7 +2,12 @@ module github.com/Slimo300/Packt-Go-Music/backend/src/rest
 
 go 1.17
 
-require github.com/gin-gonic/gin v1.7.7
+require (
+	github.com/Slimo300/Packt-Go-Music/backend/src/dblayer v0.0.0-20220206204419-d6d07e1dab6b
+	github.com/Slimo300/Packt-Go-Music/backend/src/models v0.0.0-20220206204419-d6d07e1dab6b
+	github.com/gin-gonic/gin v1.7.7
+	github.com/stripe/stripe-go v70.15.0+incompatible
+)
 
 require (
 	github.com/gin-contrib/sse v0.1.0 // indirect

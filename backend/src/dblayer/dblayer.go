@@ -1,6 +1,8 @@
 package dblayer
 
 import (
+	"errors"
+
 	"github.com/Slimo300/Packt-Go-Music/backend/src/models"
 )
 
@@ -11,7 +13,12 @@ type DBLayer interface {
 	GetCustomerById(int) (models.Customer, error)
 	GetProduct(uint) (models.Product, error)
 	AddUser(models.Customer) (models.Customer, error)
-	SignInUser(username, password string) (models.Customer, error)
+	SignInUser(models.Customer) (models.Customer, error)
 	SignOutUserById(int) error
 	GetCustomerOrdersById(int) ([]models.Order, error)
+	AddOrder(models.Order) error
+	GetCreditCatdCID(int) (string, error)
+	SaveCreditCardForCustomer(int, string) error
 }
+
+var ErrINVALIDPASSWORD = errors.New("Invalid password")

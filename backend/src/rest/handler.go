@@ -28,8 +28,7 @@ type Handler struct {
 }
 
 func NewHandler() (*Handler, error) {
-	// Tutaj powinna być inicjalizowana zmienna db, a w przypadku błedu
-	// error i chuj, a nie sprawdzać za każdym razem
+	//db := dblayer.NewORM()4
 	return new(Handler), nil
 }
 

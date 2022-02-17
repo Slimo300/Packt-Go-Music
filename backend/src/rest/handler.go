@@ -28,8 +28,21 @@ type Handler struct {
 }
 
 func NewHandler() (*Handler, error) {
-	//db := dblayer.NewORM()4
 	return new(Handler), nil
+}
+
+func NewHandlerWithParams(dbtype, conn string) (HandlerInterface, error) {
+	db, err := dblayer.NewORM(dbtype, conn)
+	if err != nil {
+		return nil, err
+	}
+	return &Handler{
+		db: db,
+	}, nil
+}
+
+func NewHandlerWithDB(db dblayer.DBLayer) HandlerInterface {
+	return &Handler{db: db}
 }
 
 func (h *Handler) GetProducts(c *gin.Context) {
@@ -66,7 +79,7 @@ func (h *Handler) SignIn(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	customer, err = h.db.SignInUser(customer)
+	customer, err = h.db.SignInUser(customer.Email, customer.Pass)
 	if err != nil {
 		if err == dblayer.ErrINVALIDPASSWORD {
 			c.JSON(http.StatusForbidden, gin.H{"error": err.Error()})

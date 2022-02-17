@@ -1,14 +1,11 @@
 package rest
 
 import (
-	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
 func RunAPIWithHandler(address string, h HandlerInterface) error {
 	r := gin.Default()
-
-	r.Use(static.ServeRoot("/", "../public/build"))
 
 	r.GET("/products", h.GetProducts)
 	r.GET("/promos", h.GetPromos)

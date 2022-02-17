@@ -36,7 +36,7 @@ func (db *DBORM) GetCustomerById(id int) (customer models.Customer, err error) {
 	return customer, db.First(&customer, id).Error
 }
 
-func (db *DBORM) GetProduct(id int) (product models.Product, err error) {
+func (db *DBORM) GetProduct(id uint) (product models.Product, err error) {
 	return product, db.First(&product, id).Error
 }
 
